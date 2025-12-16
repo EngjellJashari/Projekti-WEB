@@ -60,3 +60,55 @@ document.getElementById('homeLink').onclick = (e) => {
   e.preventDefault();
   showSection('home');
 };
+function checkAuth() {
+  const user = localStorage.getItem('autoHeavenUser');
+  const greeting = document.getElementById('userGreeting');
+  const loginLink = document.getElementById('loginLink');
+  const userArea = document.querySelector('.user-area');
+
+  const oldLogout = document.getElementById('logoutBtn');
+  if (oldLogout) oldLogout.remove();
+
+  if (user) {
+    greeting.textContent = `Mirë se erdhe, ${user}!`;
+    loginLink.style.display = 'none';
+
+    const logoutBtn = document.createElement('button');
+    logoutBtn.id = 'logoutBtn';
+    logoutBtn.className = 'btn';
+    logoutBtn.textContent = 'Logout';
+    logoutBtn.onclick = () => {
+      localStorage.removeItem('autoHeavenUser');
+      checkAuth();
+      showSection('home');
+    };
+    userArea.appendChild(logoutBtn);
+    showSection('home');
+  } else {
+    greeting.textContent = '';
+    loginLink.style.display = 'inline-block';
+  }
+
+  updateLoginSection(user);
+  updateRegisteredList();
+}
+
+function updateLoginSection(user) {
+  const form = document.getElementById('loginForm');
+  const panel = document.getElementById('loggedInPanel');
+  const msg = document.getElementById('loggedInMsg');
+  const sectionLogoutBtn = document.getElementById('sectionLogoutBtn');
+
+  if (user) {
+    form.style.display = 'none';
+    panel.style.display = 'block';
+    msg.textContent = `Jeni i kyçur si ${user}`;
+    sectionLogoutBtn.onclick = () => {
+      localStorage.removeItem('autoHeavenUser');
+      checkAuth();
+    };
+  } else {
+    form.style.display = 'block';
+    panel.style.display = 'none';
+  }
+}
