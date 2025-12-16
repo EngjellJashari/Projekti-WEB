@@ -112,3 +112,63 @@ function updateLoginSection(user) {
     panel.style.display = 'none';
   }
 }
+
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  if (!email) {
+    alert('Shkruaj email!');
+    return;
+  }
+  const username = email.split('@')[0];
+  localStorage.setItem('autoHeavenUser', username);
+  document.getElementById('loginForm').reset();
+  checkAuth();
+  showSection('home');
+});
+
+function getRegisteredUsers() {
+  return JSON.parse(localStorage.getItem('autoHeavenUsers') || '[]');
+}
+
+function saveRegisteredUsers(users) {
+  localStorage.setItem('autoHeavenUsers', JSON.stringify(users));
+}
+
+function updateRegisteredList() {
+  const list = document.getElementById('registeredList');
+  const users = getRegisteredUsers();
+  list.innerHTML = '';
+  users.forEach(name => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    list.appendChild(li);
+  });
+}
+
+document.getElementById('registerForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('regName').value.trim();
+  const password = document.getElementById('regPassword').value;
+  const confirm = document.getElementById('regConfirm').value;
+
+  if (!name || !password) {
+    alert('Plotëso të gjitha fushat!');
+    return;
+  }
+  if (password !== confirm) {
+    alert('Password-et nuk përputhen!');
+    return;
+  }
+  const users = getRegisteredUsers();
+  if (users.includes(name)) {
+    alert('Ky emër është regjistruar tashmë!');
+    return;
+  }
+  users.push(name);
+  saveRegisteredUsers(users);
+  updateRegisteredList();
+  alert(`Regjistrimi u krye me sukses, ${name}! Tani mund të kyçesh.`);
+  document.getElementById('registerForm').reset();
+  showSection('login');
+});
