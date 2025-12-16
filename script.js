@@ -43,3 +43,20 @@ document.querySelector('.close').onclick = () => {
 productModal.onclick = (e) => {
   if (e.target === productModal) productModal.style.display = 'none';
 };
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id)?.classList.add('active');
+}
+
+document.querySelectorAll('[data-section]').forEach(link => {
+  link.onclick = (e) => {
+    e.preventDefault();
+    showSection(link.dataset.section);
+  };
+});
+
+document.getElementById('homeLink').onclick = (e) => {
+  e.preventDefault();
+  showSection('home');
+};
