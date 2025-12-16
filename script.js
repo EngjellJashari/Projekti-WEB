@@ -22,3 +22,24 @@ function renderProducts(containerId, list = products) {
     container.appendChild(card);
   });
 }
+const productModal = document.getElementById('productModal');
+const modalName = document.getElementById('modalName');
+const modalDesc = document.getElementById('modalDesc');
+const modalPrice = document.getElementById('modalPrice');
+const modalImg = document.getElementById('modalImg');
+
+function openModal(p) {
+  modalName.textContent = p.name;
+  modalDesc.textContent = p.desc;
+  modalPrice.textContent = p.price;
+  modalImg.src = p.img;
+  productModal.style.display = 'flex';
+}
+
+document.querySelector('.close').onclick = () => {
+  productModal.style.display = 'none';
+};
+
+productModal.onclick = (e) => {
+  if (e.target === productModal) productModal.style.display = 'none';
+};
