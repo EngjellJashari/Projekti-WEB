@@ -172,3 +172,14 @@ document.getElementById('registerForm').addEventListener('submit', e => {
   document.getElementById('registerForm').reset();
   showSection('login');
 });
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  alert('Mesazhi u dërgua me sukses! Faleminderit.');
+  e.target.reset();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts('featuredGrid', products);
+  renderProducts('productsGrid', products);
+  checkAuth();
+});
