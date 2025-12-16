@@ -39,7 +39,6 @@ body { background: #111; color: #fff; font-family: 'Rajdhani', sans-serif; }
   transform: scale(1.05); 
   box-shadow: 0 0 15px rgba(204, 0, 0, 0.7); 
 }
-<<<<<<< HEAD
 
 #registeredUsers { max-width: 420px; margin: 0.5rem auto; color: #eee; }
 #registeredList { 
@@ -100,108 +99,28 @@ body { background: #111; color: #fff; font-family: 'Rajdhani', sans-serif; }
   .nav-links { margin: 1rem 0; }
   .product-card img { height: 200px; }
 }
-=======
-.section { 
-  padding: 3rem 1rem; 
-  text-align: center; 
-  display: none; 
-  opacity: 0; 
-  transition: opacity 0.5s ease-in-out; 
+
+const products = [
+  { id: 1, name: "Stage 3 Exhaust System", desc: "Akrapovic Titanium – +45hp", price: "€2,499", img: "./exhaust.jpg" },
+  { id: 2, name: "Hybrid Turbo Upgrade", desc: "500+ HP capable", price: "€3,999", img: "./turbo.jpg" },
+  { id: 3, name: "Carbon Fiber Bodykit", desc: "BMW M4 Aero Kit", price: "€4,999", img: "./ferrari.jpg" },
+  { id: 4, name: "20\" Forged Wheels", desc: "BBS FI-R", price: "€5,499", img: "./rims.jpg" }
+];
+
+function renderProducts(containerId, list = products) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <strong>${p.price}</strong>
+    `;
+    card.onclick = () => openModal(p);
+    container.appendChild(card);
+  });
 }
-.section.active { 
-  display: block; 
-  opacity: 1; 
-  animation: fadeIn 1s ease-in-out; 
-}
-.section-title { 
-  font-size: 2.8rem; 
-  color: #c00; 
-  margin-bottom: 1rem; 
-  animation: fadeInUp 0.8s ease-in-out; 
-}
-.section-subtitle { 
-  font-size: 1.3rem; 
-  opacity: 0.9; 
-  animation: fadeInUp 1s ease-in-out; 
-}
-.hero-img { 
-  width: 100%; 
-  max-height: 500px; 
-  object-fit: cover; 
-  border-radius: 15px; 
-  margin: 2rem 0; 
-  animation: zoomIn 1.2s ease-in-out; 
-}
-.products-grid { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 2rem; 
-  margin-top: 2rem; 
-}
-.product-card { 
-  background: #1a1a1a; 
-  padding: 1.5rem; 
-  border-radius: 15px; 
-  cursor: pointer; 
-  transition: transform 0.3s, box-shadow 0.3s; 
-}
-.product-card:hover { 
-  transform: translateY(-10px) scale(1.03); 
-  box-shadow: 0 10px 20px rgba(204, 0, 0, 0.5); 
-}
-.product-card img { 
-  width: 100%; 
-  height: 260px; 
-  object-fit: cover; 
-  display: block; 
-  border-radius: 10px; 
-  transition: transform 0.5s; 
-}
-.product-card:hover img { 
-  transform: scale(1.1); 
-}
-.search-bar { 
-  width: 100%; 
-  max-width: 500px; 
-  padding: 1rem; 
-  margin: 2rem auto; 
-  display: block; 
-  background: #333; 
-  color: #fff; 
-  border: none; 
-  border-radius: 8px; 
-  transition: box-shadow 0.3s; 
-}
-.search-bar:focus { box-shadow: 0 0 10px #c00; }
-.form-section { max-width: 400px; margin: 0 auto; }
-form input, form textarea, form select { 
-  width: 100%; 
-  padding: 1rem; 
-  margin: 0.8rem 0; 
-  background: #333; 
-  border: none; 
-  color: #fff; 
-  border-radius: 8px; 
-  transition: border 0.3s; 
-}
-form input:focus, form textarea:focus, form select:focus { 
-  border: 2px solid #c00; 
-}
-.about-card { 
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); 
-  padding: 2rem; 
-  border-radius: 16px; 
-  box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 6px 18px rgba(204,0,0,0.05); 
-  max-width: 1000px; 
-  margin: 1rem auto; 
-  text-align: left; 
-}
-.contact-wrapper { 
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  gap: 3rem; 
-  max-width: 1000px; 
-  margin: 0 auto; 
-}
-.contact-info { text-align: left; }
->>>>>>> 2e1f5173f51e0d680d8ef9045a8cc580ad5a1266
