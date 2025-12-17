@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    
+    /* Stilet për About (që i ke pasë) */
     .about-section {
       background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
       padding: 80px 20px;
@@ -80,7 +80,7 @@
       transform: scale(1.05);
     }
 
-    
+    /* Stilet e reja për Contact */
     .contact-container {
       max-width: 800px;
       margin: 40px auto;
@@ -130,6 +130,61 @@
       color: #ff3c00;
       font-size: 1.8rem;
     }
+    
+    .auth-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 20px;
+}
+.auth-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.auth-card input {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.1rem;
+}
+.auth-card input::placeholder { color: #bbb; }
+.auth-card button {
+  padding: 14px;
+  background: #ff3c00;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.auth-card button:hover {
+  background: #ff5e2a;
+  transform: translateY(-3px);
+}
+/* Në telefon – njëra pas tjetrës */
+@media (max-width: 968px) {
+  .auth-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+}
   </style>
 </head>
 <body>
@@ -220,7 +275,7 @@
     <div class="products-grid" id="productsGrid"></div>
   </section>
 
-  
+  <!-- CONTACT I RI DHE I RREGULLUAR -->
   <section id="contact" class="section">
     <h1 class="section-title">Kontakto</h1>
     <p>Na kontaktoni për pyetje, konsultime, ose rezervime. Jemi të hapur çdo ditë nga 9:00 deri në 18:00.</p>
@@ -252,22 +307,45 @@
   </section>
 
   <section id="login" class="section form-section">
-    <h1 class="section-title">Kyçu</h1>
-    <form id="loginForm">
-      <input type="email" id="loginEmail" placeholder="Email" required>
-      <input type="password" id="loginPassword" placeholder="Fjalëkalimi" required>
-      <button type="submit" class="btn">Kyçu</button>
-      <p>Nuk ke llogari? <a data-section="register">Regjistrohu</a></p>
-    </form>
-    <div id="loggedInPanel" style="display:none; margin-top:1rem; text-align:center;">
-      <p id="loggedInMsg" style="margin-bottom:1rem; font-weight:700;"></p>
-      <button id="sectionLogoutBtn" class="btn">Dil</button>
+  <div class="auth-container">
+    <!-- Karta e Login-it -->
+    <div class="auth-card">
+      <h1 class="section-title">Kyçu</h1>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Fjalëkalimi" required>
+        <button type="submit">Kyçu</button>
+      </form>
+      <p style="margin-top: 20px;">Nuk ke llogari? <a data-section="register" style="color:#ff3c00; font-weight:bold;">Regjistrohu këtu</a></p>
     </div>
-    <div id="registeredUsers" style="display:block; margin-top:1.5rem; text-align:left; max-width:400px; margin-left:auto; margin-right:auto;">
-      <h3 style="color:#c00; margin-bottom:0.5rem;">Regjistrimet</h3>
-      <ul id="registeredList"></ul>
+
+    <!-- Karta e Register-it -->
+    <div class="auth-card">
+      <h1 class="section-title">Regjistrohu</h1>
+      <form id="registerForm">
+        <input type="text" id="regName" placeholder="Emri" required>
+        <small style="color:#ccc; display:block; margin:10px 0;">Emri do të shfaqet në listën poshtë pas regjistrimit.</small>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Fjalëkalimi" required>
+        <input type="password" id="regConfirm" placeholder="Konfirmo Fjalëkalimin" required>
+        <button type="submit">Regjistrohu</button>
+      </form>
+      <p style="margin-top: 20px;">Ke llogari? <a data-section="login" style="color:#ff3c00; font-weight:bold;">Kyçu këtu</a></p>
     </div>
-  </section>
+  </div>
+
+  <!-- Paneli kur përdoruesi është i kyçur -->
+  <div id="loggedInPanel" style="display:none; text-align:center; margin-top:50px;">
+    <p id="loggedInMsg" style="font-size:1.8rem; font-weight:bold; color:#ff3c00; margin-bottom:20px;"></p>
+    <button id="sectionLogoutBtn" style="padding:14px 30px; font-size:1.2rem; background:#ff3c00; color:white; border:none; border-radius:10px; cursor:pointer;">Dil</button>
+  </div>
+
+  <!-- Lista e regjistrimeve (vetëm për testim) -->
+  <div id="registeredUsers" style="margin-top:60px; text-align:center;">
+    <h3 style="color:#ff3c00; margin-bottom:20px;">Regjistrimet (për testim)</h3>
+    <ul id="registeredList" style="list-style:none; padding:0; max-width:600px; margin:0 auto; color:#ddd;"></ul>
+  </div>
+</section>
 
   <section id="register" class="section form-section">
     <h1 class="section-title">Regjistrohu</h1>
