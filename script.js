@@ -12,12 +12,6 @@ function renderProducts(containerId, list = products) {
   list.forEach(p => {
     const card = document.createElement('div');
     card.className = 'product-card';
-    card.innerHTML = `
-      <img src="${p.img}" alt="${p.name}">
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <strong>${p.price}</strong>
-    `;
 
     const img = document.createElement('img');
     img.src = p.img;
