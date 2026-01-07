@@ -18,6 +18,30 @@ function renderProducts(containerId, list = products) {
       <p>${p.desc}</p>
       <strong>${p.price}</strong>
     `;
+
+    const img = document.createElement('img');
+    img.src = p.img;
+    img.alt = p.name;
+    img.onerror = () => {
+      console.warn(`Image failed to load: ${p.img}`);
+      img.onerror = null;
+      img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400"><rect width="100%" height="100%" fill="%23222"/><text x="50%" y="50%" fill="%23fff" alignment-baseline="middle" text-anchor="middle" font-size="24">Image not found</text></svg>';
+      img.style.objectFit = 'contain';
+      img.style.height = '180px';
+    };
+
+    const title = document.createElement('h3');
+    title.textContent = p.name;
+    const desc = document.createElement('p');
+    desc.textContent = p.desc;
+    const price = document.createElement('strong');
+    price.textContent = p.price;
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(desc);
+    card.appendChild(price);
+
     card.onclick = () => openModal(p);
     container.appendChild(card);
   });
@@ -32,6 +56,11 @@ function openModal(p) {
   modalName.textContent = p.name;
   modalDesc.textContent = p.desc;
   modalPrice.textContent = p.price;
+  modalImg.onerror = () => {
+    console.warn(`Modal image failed to load: ${p.img}`);
+    modalImg.onerror = null;
+    modalImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><rect width="100%" height="100%" fill="%23222"/><text x="50%" y="50%" fill="%23fff" alignment-baseline="middle" text-anchor="middle" font-size="28">Image not available</text></svg>';
+  };
   modalImg.src = p.img;
   productModal.style.display = 'flex';
 }
@@ -182,4 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProducts('featuredGrid', products);
   renderProducts('productsGrid', products);
   checkAuth();
+
+  // Fallback for the hero image if it fails to load
+  const hero = document.querySelector('.hero-img');
+  if (hero) {
+    hero.onerror = () => {
+      console.warn('Hero image failed to load: ./hero.jpg');
+      hero.onerror = null;
+      hero.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400"><rect width="100%" height="100%" fill="%23111"/><text x="50%" y="50%" fill="%23fff" alignment-baseline="middle" text-anchor="middle" font-size="28">Hero image missing</text></svg>';
+      hero.style.objectFit = 'contain';
+    };
+  }
 });
