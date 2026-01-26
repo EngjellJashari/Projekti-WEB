@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Auto Heaven</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Auto Heaven</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="user-area">
+      <span id="userGreeting"></span>
+      <a href="login.html" id="loginLink" class="btn">Login</a>
+      <button id="logoutBtn" class="btn logout">Logout</button>
+    </div>
+  </nav>
+
+  <section class="form-section">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <span class="error"></span>
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <span class="error"></span>
+      <button type="submit">Login</button>
+      <p>Nuk ke llogari? <a href="register.html">Regjistrohu</a></p>
+    </form>
+  </section>
+
+  <script src="assets/js/forms.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

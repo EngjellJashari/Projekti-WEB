@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto Heaven | High-Performance Parts & Tuning</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Auto Heaven</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="user-area">
+      <span id="userGreeting"></span>
+      <a href="login.html" id="loginLink" class="btn">Login</a>
+      <button id="logoutBtn" class="btn logout">Logout</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1 class="fade-in-up">Auto Heaven</h1>
+      <p class="fade-in-up delay-1">Your one-stop shop for high-performance parts and tuning solutions.</p>
+    </div>
+    <img src="assets/img/hero.jpg" alt="BMW M4" class="hero-car">
+  </section>
+
+  <section class="featured">
+    <h2 class="section-title">Featured Products</h2>
+    <p class="section-subtitle">Your one-stop shop for high-performance parts and tuning solutions.</p>
+
+    <div class="products-grid">
+      <div class="product-card animate-card">
+        <img src="assets/img/exhaust.jpg" alt="Exhaust">
+        <h3>Stage 3 Exhaust System</h3>
+        <p>Akrapovic Titanium – +45hp & sound brutal</p>
+        <a href="product-detail.html" class="btn-small">Learn More</a>
+      </div>
+      <div class="product-card animate-card delay-2">
+        <img src="assets/img/turbo.jpg" alt="Turbo">
+        <h3>Hybrid Turbo Upgrade</h3>
+        <p>500+ HP capable – Golf R / S3 / RS3</p>
+        <a href="#" class="btn-small">Learn More</a>
+      </div>
+      <div class="product-card animate-card delay-4">
+        <img src="assets/img/ferrari.jpg" alt="Ferrari">
+        <h3>Carbon Fiber Bodykit</h3>
+        <p>Full aero package for BMW M4</p>
+        <a href="#" class="btn-small">Learn More</a>
+      </div>
+      <div class="product-card animate-card delay-6">
+        <img src="assets/img/rims.jpg" alt="Rims">
+        <h3>20" Forged Wheels</h3>
+        <p>BBS FI-R – lightweight & strong</p>
+        <a href="#" class="btn-small">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="assets/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.animate-card').forEach((card, i) => {
+        card.style.animationDelay = `${i * 0.2}s`;
+      });
+    });
+  </script>
+</body>
+</html>
