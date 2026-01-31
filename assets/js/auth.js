@@ -1,70 +1,52 @@
-const users = JSON.parse(localStorage.getItem('users')) || [];
-
-// Register
-const registerForm = document.getElementById('registerForm');
-if (registerForm) {
-  registerForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('regName').value.trim();
-    const email = document.getElementById('regEmail').value.trim();
-    const password = document.getElementById('regPassword').value;
-    const confirm = document.getElementById('regConfirm').value;
-
-    if (password !== confirm) {
-      alert('Password-et nuk përputhen!');
-      return;
-    }
-    if (users.find(u => u.email === email)) {
-      alert('Ky email është regjistruar tashmë!');
-      return;
-    }
-
-    users.push({ name, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-    localStorage.setItem('currentUser', JSON.stringify({ name, email }));
-
-    alert('Regjistrim i suksesshëm!');
-    window.location.href = 'index.html';
-  });
-}
-
-// Login
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-  loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-
-    const user = users.find(u => u.email === email && u.password === password);
-    if (user) {
-      localStorage.setItem('currentUser', JSON.stringify({ name: user.name, email }));
-      window.location.href = 'index.html';
-    } else {
-      alert('Email ose password gabim!');
-    }
-  });
-}
-
-// Check Auth
+// Check Auth - Get user info from PHP session via hidden element
 function checkAuth() {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   const greeting = document.getElementById('userGreeting');
   const loginLink = document.getElementById('loginLink');
   const logoutBtn = document.getElementById('logoutBtn');
 
-  if (currentUser && greeting) {
-    greeting.textContent = `Përshëndetje, ${currentUser.name}!`;
-    loginLink.style.display = 'none';
-    logoutBtn.style.display = 'inline-block';
+  // Check if user info is provided via PHP (in a hidden div)
+  const userInfoElement = document.getElementById('userInfo');
+  let userName = null;
+
+  if (userInfoElement) {
+    userName = userInfoElement.getAttribute('data-user-name');
+  }
+
+  // If userName exists and is not empty, user is logged in
+  if (userName && userName.trim()) {
+    if (greeting) {
+      greeting.textContent = `Përshëndetje, ${userName}!`;
+      greeting.style.setProperty('display', 'inline-block', 'important');
+    }
+    if (loginLink) loginLink.style.setProperty('display', 'none', 'important');
+    if (logoutBtn) logoutBtn.style.setProperty('display', 'inline-block', 'important');
+  } else {
+    // User is NOT logged in - hide greeting and logout, show login
+    if (greeting) greeting.style.setProperty('display', 'none', 'important');
+    if (loginLink) loginLink.style.setProperty('display', 'inline-block', 'important');
+    if (logoutBtn) logoutBtn.style.setProperty('display', 'none', 'important');
   }
 }
 
-document.getElementById('logoutBtn')?.addEventListener('click', () => {
-  localStorage.removeItem('currentUser');
-  window.location.href = 'index.html';
-});
+// Setup logout button event
+function setupLogoutButton() {
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'logout.php';
+    });
+  }
+}
 
-document.addEventListener('DOMContentLoaded', checkAuth);
+// Run checkAuth immediately when script loads
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
+    setupLogoutButton();
+  });
+} else {
+  // DOM is already loaded
+  checkAuth();
+  setupLogoutButton();
+}

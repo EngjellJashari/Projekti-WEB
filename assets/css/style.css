@@ -42,7 +42,12 @@ body {
   text-decoration: none;
   display: inline-block;
 }
-.logout { background: transparent; border: 1px solid #c00; }
+button.logout { 
+  background: transparent; 
+  border: 1px solid #c00; 
+  display: none; 
+}
+#userGreeting { display: none; }
 .user-area span { margin-right: 15px; color: #c00; font-weight: bold; }
 
 /* Hero */
