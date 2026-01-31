@@ -177,8 +177,8 @@ require_once 'includes/session.php';
           Shiko koleksionin tonë të plotë të pjesëve tuning ose na kontakto për konsultim personalizuar.
         </p>
         <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-          <a href="products.html" class="btn" style="display: inline-block;">Shiko Produktet</a>
-          <a href="contact.html" class="btn" style="display: inline-block; background: transparent; border: 2px solid #c00;">Na Kontakto</a>
+          <a href="products.php" class="btn" style="display: inline-block;">Shiko Produktet</a>
+          <a href="contact.php" class="btn" style="display: inline-block; background: transparent; border: 2px solid #c00;">Na Kontakto</a>
         </div>
       </div>
     </div>
