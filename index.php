@@ -50,25 +50,25 @@ require_once 'includes/session.php';
         <img src="assets/img/exhaust.jpg" alt="Exhaust">
         <h3>Stage 3 Exhaust System</h3>
         <p>Akrapovic Titanium – +45hp & sound brutal</p>
-        <a href="product-detail.html" class="btn-small">Learn More</a>
+        <a href="product-detail.php" class="btn-small">Learn More</a>
       </div>
       <div class="product-card animate-card delay-2">
         <img src="assets/img/turbo.jpg" alt="Turbo">
         <h3>Hybrid Turbo Upgrade</h3>
         <p>500+ HP capable – Golf R / S3 / RS3</p>
-        <a href="#" class="btn-small">Learn More</a>
+        <a href="product-detail.php" class="btn-small">Learn More</a>
       </div>
       <div class="product-card animate-card delay-4">
         <img src="assets/img/ferrari.jpg" alt="Ferrari">
         <h3>Carbon Fiber Bodykit</h3>
         <p>Full aero package for BMW M4</p>
-        <a href="#" class="btn-small">Learn More</a>
+        <a href="product-detail.php" class="btn-small">Learn More</a>
       </div>
       <div class="product-card animate-card delay-6">
         <img src="assets/img/rims.jpg" alt="Rims">
         <h3>20" Forged Wheels</h3>
         <p>BBS FI-R – lightweight & strong</p>
-        <a href="#" class="btn-small">Learn More</a>
+        <a href="product-detail.php" class="btn-small">Learn More</a>
       </div>
     </div>
   </section>
