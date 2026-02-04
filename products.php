@@ -83,7 +83,7 @@ $products = $product->getAll();
         <?php foreach ($products as $p): ?>
           <div class="product-card animate-card">
             <?php $imgSrc = !empty($p['image']) ? 'assets/' . $p['image'] : $images[$imageIndex % count($images)]; ?>
-            <img src="<?php echo $imgSrc; ?>" alt="<?php echo htmlspecialchars($p['name']); ?>">
+            <img src="<?php echo $imgSrc; ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" onerror="this.src='<?php echo $images[$imageIndex % count($images)]; ?>';">
             <h3><?php echo htmlspecialchars($p['name']); ?></h3>
             <p><?php echo htmlspecialchars(substr($p['description'], 0, 50)); ?></p>
             <p style="color: #c00; font-weight: bold; margin-top: 10px;">€<?php echo number_format($p['price'], 2); ?></p>

@@ -14,6 +14,16 @@ if (!$product) {
     header('Location: products.php');
     exit;
 }
+
+// Default images for fallback
+$defaultImages = [
+    'assets/img/exhaust.jpg',
+    'assets/img/turbo.jpg', 
+    'assets/img/ferrari.jpg',
+    'assets/img/rims.jpg'
+];
+$imageIndex = ($product['id'] - 1) % count($defaultImages);
+$defaultImage = $defaultImages[$imageIndex];
 ?>
 <!DOCTYPE html>
 <html lang="sq">
@@ -52,7 +62,7 @@ if (!$product) {
       <h1 class="section-title"><?php echo htmlspecialchars($product['name']); ?></h1>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: start;">
         <div>
-          <img src="assets/img/product-placeholder.jpg" alt="<?php echo htmlspecialchars($product['name']); ?>" style="width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(200,0,0,0.3);">
+          <img src="<?php echo !empty($product['image']) ? 'assets/' . htmlspecialchars($product['image']) : $defaultImage; ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" style="width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(200,0,0,0.3);" onerror="this.src='<?php echo $defaultImage; ?>';">
         </div>
         <div>
           <h2 style="font-size: 2.5rem; color: #c00; margin-bottom: 20px;"><?php echo htmlspecialchars($product['name']); ?></h2>
